@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منيو الفخامة - نسخة النيون</title>
+    <title>منيو الفخامة الملكي - نسخة النيون</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
@@ -19,98 +19,101 @@
             background-color: var(--dark-black); color: white; overflow-x: hidden;
         }
 
-        /* لوحة التحكم الجانبية - بدون خطوط */
+        /* لوحة التحكم الجانبية - نظيفة تماماً */
         .sidebar {
             position: fixed; top: 0; right: -300px;
             width: 280px; height: 100%; background: #0a0a0a;
-            z-index: 1000; transition: 0.5s; padding: 30px 20px;
-            box-shadow: -10px 0 30px rgba(0,0,0,0.9);
+            z-index: 1000; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 30px 20px; box-shadow: -10px 0 30px rgba(0,0,0,0.9);
         }
         .sidebar.active { right: 0; }
         .sidebar-header { text-align: center; margin-bottom: 40px; }
         .sidebar-link {
             display: flex; align-items: center; padding: 15px;
             color: white; text-decoration: none; margin-bottom: 10px;
-            border-radius: 12px; background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px; background: rgba(255, 255, 255, 0.03); transition: 0.3s;
         }
+        .sidebar-link:hover { background: rgba(255, 0, 127, 0.1); color: var(--primary-pink); }
 
-        /* الهيدر مع تأثير النيون المتحرك */
+        /* الهيدر وتأثير النيون */
         .header {
             height: 250px;
             background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
                         url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1350&q=80') center/cover;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            border-bottom: 2px solid var(--primary-pink);
+            border-bottom: 3px solid var(--primary-pink);
         }
 
-        /* حركة النيون */
-        .neon-title {
-            font-size: 35px;
-            font-weight: 900;
-            color: #fff;
-            text-transform: uppercase;
-            text-align: center;
-            letter-spacing: 3px;
-            /* توهج النيون الأساسي */
-            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--primary-pink), 0 0 40px var(--primary-pink), 0 0 60px var(--primary-pink);
-            /* استدعاء الحركة */
-            animation: neon-glow 1.5s ease-in-out infinite alternate;
+        .neon-text {
+            font-size: 32px; font-weight: 900; color: #fff;
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--primary-pink), 0 0 40px var(--primary-pink);
+            animation: pulse-glow 1.5s ease-in-out infinite alternate;
+            letter-spacing: 2px;
         }
 
-        @keyframes neon-glow {
-            from {
-                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--primary-pink), 0 0 40px var(--primary-pink);
-                transform: scale(1);
-            }
-            to {
-                text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px var(--primary-pink), 0 0 80px var(--primary-pink), 0 0 100px var(--primary-pink);
-                transform: scale(1.05); /* حركة تكبير بسيطة مع التوهج */
-            }
+        @keyframes pulse-glow {
+            from { text-shadow: 0 0 5px #fff, 0 0 10px var(--primary-pink); transform: scale(1); }
+            to { text-shadow: 0 0 10px #fff, 0 0 30px var(--primary-pink), 0 0 50px var(--primary-pink); transform: scale(1.05); }
         }
 
         .menu-toggle { position: absolute; top: 25px; right: 25px; font-size: 28px; color: var(--primary-pink); cursor: pointer; }
 
-        /* البحث والمنتجات */
+        /* البحث */
         .search-area { padding: 0 25px; margin-top: -30px; }
         .search-wrapper {
             background: #1a1a1a; border-radius: 15px; padding: 12px 20px;
             display: flex; align-items: center; border: 1px solid var(--primary-pink);
+            box-shadow: 0 5px 15px rgba(255, 0, 127, 0.1);
         }
         .search-wrapper input { background: transparent; border: none; color: white; width: 100%; outline: none; font-family: 'Cairo'; }
 
-        .food-grid { padding: 30px 20px 100px 20px; }
+        /* كارتات الطعام - ستايل الفخامة */
+        .food-grid { padding: 40px 20px 100px 20px; }
         .food-card {
-            background: var(--card-bg); border-radius: 20px; display: flex;
+            background: var(--card-bg); border-radius: 25px; display: flex;
             margin-bottom: 20px; overflow: hidden; border: 1px solid #222;
+            transition: 0.3s;
         }
+        .food-card:hover { border-color: var(--primary-pink); }
         .food-img { width: 130px; height: 130px; object-fit: cover; }
         .food-info { padding: 15px; flex: 1; position: relative; }
-        .food-price { color: var(--primary-pink); font-weight: 900; font-size: 18px; display: block; margin-top: 10px; }
-        .buy-btn { background: var(--primary-pink); color: white; border: none; padding: 8px 15px; border-radius: 10px; position: absolute; bottom: 15px; left: 15px; font-family: 'Cairo'; font-weight: bold; }
+        .food-info h3 { margin: 0; font-size: 19px; color: white; }
+        .food-info p { font-size: 12px; color: #777; margin: 5px 0; }
+        .food-price { color: var(--primary-pink); font-weight: 900; font-size: 19px; display: block; margin-top: 10px; }
+        
+        .buy-btn {
+            background: var(--primary-pink); color: white; border: none;
+            padding: 8px 18px; border-radius: 12px; position: absolute;
+            bottom: 15px; left: 15px; font-family: 'Cairo'; font-weight: bold;
+            box-shadow: 0 4px 10px rgba(255, 0, 127, 0.3);
+        }
 
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; z-index: 999; backdrop-filter: blur(4px); }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; z-index: 999; backdrop-filter: blur(5px); }
         .overlay.active { display: block; }
     </style>
 </head>
 <body>
 
     <div class="overlay" id="overlay"></div>
+    
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <h3 style="color: var(--primary-pink);">لوحة التحكم</h3>
+            <h3 style="color: var(--primary-pink);">سناك جكن 99</h3>
+            <p style="font-size: 12px; color: #555;">العنوان: بغداد - حي الجامعة</p>
         </div>
-        <a href="#" class="sidebar-link"><i class="fas fa-home"></i> الرئيسية</a>
-        <a href="#" class="sidebar-link"><i class="fas fa-phone"></i> اتصل بنا</a>
+        <a href="#" class="sidebar-link"><i class="fas fa-utensils" style="margin-left:10px"></i> المنيو الرئيسي</a>
+        <a href="#" class="sidebar-link"><i class="fas fa-motorcycle" style="margin-left:10px"></i> تتبع الطلب</a>
+        <a href="#" class="sidebar-link"><i class="fas fa-phone-alt" style="margin-left:10px"></i> اتصل بنا</a>
     </div>
 
     <header class="header">
         <div class="menu-toggle" id="openSidebar"><i class="fas fa-bars"></i></div>
-        <h2 class="neon-title">سناك جكن 99</h2>
+        <h2 class="neon-text">سناك جكن 99</h2>
     </header>
 
     <div class="search-area">
         <div class="search-wrapper">
-            <i class="fas fa-search" style="color: var(--primary-pink);"></i>
+            <i class="fas fa-search" style="color: var(--primary-pink); margin-left: 10px;"></i>
             <input type="text" id="searchInput" placeholder="ابحث عن وجبتك الفخمة...">
         </div>
     </div>
@@ -119,9 +122,19 @@
         <div class="food-card">
             <img class="food-img" src="https://img.freepik.com/free-photo/double-beef-burger-with-cheese-and-vegetables_114579-2514.jpg">
             <div class="food-info">
-                <h3>بركر دبل فخامة</h3>
-                <p>لحم عراقي طازج مع الجبن</p>
+                <h3>بركر بينك فخامة</h3>
+                <p>لحم عجل عراقي، جبن شيدر، صوص خاص</p>
                 <span class="food-price">12,500 د.ع</span>
+                <button class="buy-btn">اطلب</button>
+            </div>
+        </div>
+
+        <div class="food-card">
+            <img class="food-img" src="https://img.freepik.com/free-photo/crispy-fried-chicken_144627-21144.jpg">
+            <div class="food-info">
+                <h3>وجبة كرسبي رويال</h3>
+                <p>5 قطع كرسبي، بطاطا، ثومية، صمون</p>
+                <span class="food-price">10,000 د.ع</span>
                 <button class="buy-btn">اطلب</button>
             </div>
         </div>
@@ -131,6 +144,7 @@
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
         const openBtn = document.getElementById('openSidebar');
+
         openBtn.onclick = () => { sidebar.classList.add('active'); overlay.classList.add('active'); }
         overlay.onclick = () => { sidebar.classList.remove('active'); overlay.classList.remove('active'); }
 
