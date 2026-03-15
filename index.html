@@ -3,39 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>منيو الفخامة الملكي - نسخة النيون</title>
+    <title>منيو الفخامة الملكي</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
         :root {
-            --primary-pink: #ff007f;
-            --dark-black: #050505;
-            --card-bg: #121212;
+            --primary-pink: #ff007f; /* الوردي النيون الفخم */
+            --dark-black: #050505;   /* الأسود الملكي */
+            --card-bg: #121212;      /* خلفية الكارتات */
         }
 
         body {
-            margin: 0; font-family: 'Cairo', sans-serif;
-            background-color: var(--dark-black); color: white; overflow-x: hidden;
+            margin: 0;
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--dark-black);
+            color: white;
+            overflow-x: hidden;
         }
 
-        /* لوحة التحكم الجانبية - نظيفة تماماً */
+        /* لوحة التحكم الجانبية - بدون أي خطوط مثل ما طلبت */
         .sidebar {
-            position: fixed; top: 0; right: -300px;
-            width: 280px; height: 100%; background: #0a0a0a;
-            z-index: 1000; transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 30px 20px; box-shadow: -10px 0 30px rgba(0,0,0,0.9);
+            position: fixed;
+            top: 0; right: -300px;
+            width: 280px; height: 100%;
+            background: #0a0a0a;
+            z-index: 1000;
+            transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 30px 20px;
+            box-shadow: -15px 0 35px rgba(0,0,0,0.9);
         }
+
         .sidebar.active { right: 0; }
+
         .sidebar-header { text-align: center; margin-bottom: 40px; }
+        .sidebar-header h3 { color: var(--primary-pink); font-size: 24px; }
+
         .sidebar-link {
             display: flex; align-items: center; padding: 15px;
-            color: white; text-decoration: none; margin-bottom: 10px;
-            border-radius: 15px; background: rgba(255, 255, 255, 0.03); transition: 0.3s;
+            color: white; text-decoration: none; margin-bottom: 12px;
+            border-radius: 15px; background: rgba(255, 255, 255, 0.03);
+            transition: 0.3s;
         }
-        .sidebar-link:hover { background: rgba(255, 0, 127, 0.1); color: var(--primary-pink); }
 
-        /* الهيدر وتأثير النيون */
+        .sidebar-link:hover { background: rgba(255, 0, 127, 0.1); color: var(--primary-pink); }
+        .sidebar-link i { margin-left: 15px; font-size: 20px; }
+
+        /* الهيدر وتأثير النيون المتحرك لاسم المطعم */
         .header {
             height: 250px;
             background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
@@ -44,51 +58,64 @@
             border-bottom: 3px solid var(--primary-pink);
         }
 
-        .neon-text {
-            font-size: 32px; font-weight: 900; color: #fff;
-            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--primary-pink), 0 0 40px var(--primary-pink);
-            animation: pulse-glow 1.5s ease-in-out infinite alternate;
+        .neon-title {
+            font-size: 38px;
+            font-weight: 900;
+            color: #fff;
+            text-align: center;
             letter-spacing: 2px;
+            /* تأثير النشرة المتحركة */
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--primary-pink), 0 0 40px var(--primary-pink);
+            animation: neon-pulse 1.5s ease-in-out infinite alternate;
         }
 
-        @keyframes pulse-glow {
-            from { text-shadow: 0 0 5px #fff, 0 0 10px var(--primary-pink); transform: scale(1); }
-            to { text-shadow: 0 0 10px #fff, 0 0 30px var(--primary-pink), 0 0 50px var(--primary-pink); transform: scale(1.05); }
+        @keyframes neon-pulse {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px var(--primary-pink), 0 0 20px var(--primary-pink);
+                transform: scale(1);
+            }
+            to {
+                text-shadow: 0 0 10px #fff, 0 0 30px var(--primary-pink), 0 0 60px var(--primary-pink), 0 0 80px var(--primary-pink);
+                transform: scale(1.05);
+            }
         }
 
         .menu-toggle { position: absolute; top: 25px; right: 25px; font-size: 28px; color: var(--primary-pink); cursor: pointer; }
 
-        /* البحث */
+        /* خانة البحث الشغالة */
         .search-area { padding: 0 25px; margin-top: -30px; }
         .search-wrapper {
-            background: #1a1a1a; border-radius: 15px; padding: 12px 20px;
+            background: #1a1a1a; border-radius: 18px; padding: 12px 20px;
             display: flex; align-items: center; border: 1px solid var(--primary-pink);
-            box-shadow: 0 5px 15px rgba(255, 0, 127, 0.1);
+            box-shadow: 0 5px 20px rgba(255, 0, 127, 0.15);
         }
-        .search-wrapper input { background: transparent; border: none; color: white; width: 100%; outline: none; font-family: 'Cairo'; }
+        .search-wrapper input {
+            background: transparent; border: none; color: white; width: 100%;
+            padding: 0 15px; outline: none; font-family: 'Cairo'; font-size: 16px;
+        }
 
-        /* كارتات الطعام - ستايل الفخامة */
+        /* قائمة الطعام الفخمة */
         .food-grid { padding: 40px 20px 100px 20px; }
         .food-card {
             background: var(--card-bg); border-radius: 25px; display: flex;
-            margin-bottom: 20px; overflow: hidden; border: 1px solid #222;
+            margin-bottom: 22px; overflow: hidden; border: 1px solid #222;
             transition: 0.3s;
         }
-        .food-card:hover { border-color: var(--primary-pink); }
-        .food-img { width: 130px; height: 130px; object-fit: cover; }
-        .food-info { padding: 15px; flex: 1; position: relative; }
-        .food-info h3 { margin: 0; font-size: 19px; color: white; }
-        .food-info p { font-size: 12px; color: #777; margin: 5px 0; }
-        .food-price { color: var(--primary-pink); font-weight: 900; font-size: 19px; display: block; margin-top: 10px; }
+        .food-card:hover { border-color: var(--primary-pink); transform: translateY(-5px); }
+        .food-img { width: 135px; height: 135px; object-fit: cover; }
+        .food-info { padding: 18px; flex: 1; position: relative; }
+        .food-info h3 { margin: 0; font-size: 20px; color: white; }
+        .food-info p { font-size: 13px; color: #777; margin: 8px 0; }
+        .food-price { color: var(--primary-pink); font-weight: 900; font-size: 20px; display: block; margin-top: 10px; }
         
         .buy-btn {
             background: var(--primary-pink); color: white; border: none;
-            padding: 8px 18px; border-radius: 12px; position: absolute;
-            bottom: 15px; left: 15px; font-family: 'Cairo'; font-weight: bold;
-            box-shadow: 0 4px 10px rgba(255, 0, 127, 0.3);
+            padding: 10px 20px; border-radius: 12px; position: absolute;
+            bottom: 18px; left: 18px; font-family: 'Cairo'; font-weight: 900;
+            box-shadow: 0 5px 15px rgba(255, 0, 127, 0.4);
         }
 
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; z-index: 999; backdrop-filter: blur(5px); }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; z-index: 999; backdrop-filter: blur(6px); }
         .overlay.active { display: block; }
     </style>
 </head>
@@ -98,23 +125,23 @@
     
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <h3 style="color: var(--primary-pink);">سناك جكن 99</h3>
-            <p style="font-size: 12px; color: #555;">العنوان: بغداد - حي الجامعة</p>
+            <h3>منيو الفخامة</h3>
         </div>
-        <a href="#" class="sidebar-link"><i class="fas fa-utensils" style="margin-left:10px"></i> المنيو الرئيسي</a>
-        <a href="#" class="sidebar-link"><i class="fas fa-motorcycle" style="margin-left:10px"></i> تتبع الطلب</a>
-        <a href="#" class="sidebar-link"><i class="fas fa-phone-alt" style="margin-left:10px"></i> اتصل بنا</a>
+        <a href="#" class="sidebar-link"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
+        <a href="#" class="sidebar-link"><i class="fas fa-map-marker-alt"></i> موقعنا</a>
+        <a href="#" class="sidebar-link"><i class="fas fa-phone-alt"></i> اتصل بنا</a>
+        <a href="#" class="sidebar-link"><i class="fas fa-info-circle"></i> عن المطعم</a>
     </div>
 
     <header class="header">
         <div class="menu-toggle" id="openSidebar"><i class="fas fa-bars"></i></div>
-        <h2 class="neon-text">سناك جكن 99</h2>
+        <h2 class="neon-title">منيو الفخامة</h2>
     </header>
 
     <div class="search-area">
         <div class="search-wrapper">
-            <i class="fas fa-search" style="color: var(--primary-pink); margin-left: 10px;"></i>
-            <input type="text" id="searchInput" placeholder="ابحث عن وجبتك الفخمة...">
+            <i class="fas fa-search" style="color: var(--primary-pink);"></i>
+            <input type="text" id="searchInput" placeholder="ابحث عن ذوقك الرفيع...">
         </div>
     </div>
 
@@ -122,8 +149,8 @@
         <div class="food-card">
             <img class="food-img" src="https://img.freepik.com/free-photo/double-beef-burger-with-cheese-and-vegetables_114579-2514.jpg">
             <div class="food-info">
-                <h3>بركر بينك فخامة</h3>
-                <p>لحم عجل عراقي، جبن شيدر، صوص خاص</p>
+                <h3>بركر الفخامة الملكي</h3>
+                <p>لحم عجل طازج مع خلطة النيون الخاصة</p>
                 <span class="food-price">12,500 د.ع</span>
                 <button class="buy-btn">اطلب</button>
             </div>
@@ -132,8 +159,8 @@
         <div class="food-card">
             <img class="food-img" src="https://img.freepik.com/free-photo/crispy-fried-chicken_144627-21144.jpg">
             <div class="food-info">
-                <h3>وجبة كرسبي رويال</h3>
-                <p>5 قطع كرسبي، بطاطا، ثومية، صمون</p>
+                <h3>وجبة كرسبي VIP</h3>
+                <p>صدر دجاج مقرمش مع صوص الوردي</p>
                 <span class="food-price">10,000 د.ع</span>
                 <button class="buy-btn">اطلب</button>
             </div>
@@ -141,6 +168,7 @@
     </div>
 
     <script>
+        // برمجة فتح وإغلاق السايد بار
         const sidebar = document.getElementById('sidebar');
         const overlay = document.getElementById('overlay');
         const openBtn = document.getElementById('openSidebar');
@@ -148,13 +176,19 @@
         openBtn.onclick = () => { sidebar.classList.add('active'); overlay.classList.add('active'); }
         overlay.onclick = () => { sidebar.classList.remove('active'); overlay.classList.remove('active'); }
 
+        // برمجة البحث الفعال
         const searchInput = document.getElementById('searchInput');
         const foodCards = document.getElementsByClassName('food-card');
+
         searchInput.addEventListener('input', () => {
             const filter = searchInput.value.toLowerCase();
             Array.from(foodCards).forEach(card => {
                 const title = card.querySelector('h3').innerText.toLowerCase();
-                card.style.display = title.includes(filter) ? "flex" : "none";
+                if (title.includes(filter)) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
             });
         });
     </script>
